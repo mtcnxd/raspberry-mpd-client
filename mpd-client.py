@@ -4,11 +4,19 @@ import time
 client = MPDClient()
 client.connect("192.168.1.134", 6600)
 
+# Supported commands by MPD lib
+#
 # client.pause()
 # client.next()
 # client.previous()
 # client.stop()
 # client.setvol(70)
+
+
+playlist = client.playlistinfo()
+
+for track in playlist:
+	print(f"Artist: {track.get('artist')} \nTitle: {track.get('title')} \nAlbum {track.get('album')}")
 
 while True:
 	current_song = client.currentsong()
